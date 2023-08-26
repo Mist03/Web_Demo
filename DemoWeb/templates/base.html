@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Website</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="">
+            <img src="{% static 'images/logo.png' %}" alt="" /><span>
+              Название сайта
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item">
+                  <a class="nav-link" href="service"> Услуги</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'cart' %}"> Корзина </a>
+                </li>
+                {% if user.is_authenticated  %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile' %}"> {{user.username}}</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile' %}"> Вход</a>
+                </li>
+                {% endif %}
+              </ul>
+              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class=" slider_section position-relative">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="slider_item-box">
+              <div class="slider_item-container">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="slider_item-detail">
+                        <div>
+                          <h1>
+                            Видеомонтаж <br />
+                            еще заголовок
+                          </h1>
+                          <p>
+                            Услуга Видеомонтажа
+                          </p>
+                          <div class="d-flex">
+                            <a href="service" class="text-uppercase custom_orange-btn mr-3">
+                              Услуги
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="slider_img-box">
+                        <div>
+                          <img src="{% static 'images/VideoMontaj.png'%}" alt="" class="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="slider_item-box">
+              <div class="slider_item-container">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="slider_item-detail">
+                        <div>
+                          <h1>
+                            Фотошоп <br />
+                            еще заголовок 2
+                          </h1>
+                          <p>
+                           Услуга фотошопа
+                          </p>
+                          <div class="d-flex">
+                            <a href="service" class="text-uppercase custom_orange-btn mr-3">
+                              Услуги
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="slider_img-box">
+                        <div>
+                          <img src="{% static 'images/Photoshop.png'%}" alt="" class="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="slider_item-box">
+              <div class="slider_item-container">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="slider_item-detail">
+                        <div>
+                          <h1>
+                            Заголовок 3 <br />
+                            еще заголовок 3
+                          </h1>
+                          <p>
+                            Описание 3
+                          </p>
+                          <div class="d-flex">
+                            <a href="service" class="text-uppercase custom_orange-btn mr-3">
+                              Услуги
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="slider_img-box">
+                        <div>
+                          <img src="{% static 'images/slide-img.png'%}" alt="" class="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="custom_carousel-control">
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- end slider section -->
+  </div>
+
+  <!-- website section -->
+
+  <section class="service_section layout_padding ">
+    <div class="container">
+      <h2 class="custom_heading">Наши услуги</h2>
+      <p class="custom_heading-text">
+        Что-то пишем
+      </p>
+      <div class=" layout_padding2">
+        <div class="card-deck">
+          <div class="card">
+            <img class="card-img-top" src="{% static 'images/card-item-1.png' %}" alt="Card image cap"/>
+            <div class="card-body">
+              <h5 class="card-title">Первая услуга</h5>
+              <p class="card-text">
+                Чтото пишем тоже
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{% static 'images/card-item-2.png' %}" alt="Card image cap"/>
+            <div class="card-body">
+              <h5 class="card-title">Вторая услуга</h5>
+              <p class="card-text">
+                Чтото пишем тоже
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="{% static 'images/card-item-3.png' %}" alt="Card image cap"/>
+            <div class="card-body">
+              <h5 class="card-title">Еще одна услуга</h5>
+              <p class="card-text">
+                Чтото пишем тоже
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <a href="service" class="custom_dark-btn">
+          Больше услуг
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- {{post.get_absolute_url}} -->
+  <!-- end website section -->
+  <!-- fruits section -->
+
+  <section class="fruit_section">
+    <div class="container">
+      <h2 class="custom_heading">Типо заголовок чегото</h2>
+      <p class="custom_heading-text">
+        Чтото пишем тут
+      </p>
+      <div class="row layout_padding2">
+        <div class="col-md-8">
+          <div class="fruit_detail-box">
+            <h3>
+              Пример товара
+            </h3>
+            <p class="mt-4 mb-5">
+              Описание этого товара или чтото другое
+            </p>
+            <div>
+              <a href="service" class="custom_dark-btn">
+                Купить
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <div class="fruit_img-box d-flex justify-content-center align-items-center">
+            <img src="{% static 'images/orange.png'%}" alt="" class="" width="250px" />
+          </div>
+        </div>
+      </div>
+      <div class="row layout_padding2">
+        <div class="col-md-8">
+          <div class="fruit_detail-box">
+            <h3>
+              Пример товара
+            </h3>
+            <p class="mt-4 mb-5">
+              Описание этого товара или чтото другое
+            </p>
+            <div>
+              <a href="service" class="custom_dark-btn">
+                Купить
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <div class="fruit_img-box d-flex justify-content-center ">
+            <img src="{% static 'images/grapes.png'%}" alt="" class="" width="100px" />
+          </div>
+        </div>
+      </div>
+      <div class="row layout_padding2-top layout_padding-bottom">
+        <div class="col-md-8">
+          <div class="fruit_detail-box">
+            <h3>
+              Пример товара
+            </h3>
+            <p class="mt-4 mb-5">
+              Описание этого товара или чтото другое
+            </p>
+            <div>
+              <a href="service" class="custom_dark-btn">
+                Купить
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <div class="fruit_img-box d-flex justify-content-center align-items-center">
+            <img src="{% static 'images/gauva.png'%}" alt="" class="" width="250px" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end fruits section -->
+  <section class="info_section layout_padding">
+    <div class="container">
+     <div class="roww">
+        <div class="col-md-3">
+          <h5>
+            О нас
+          </h5>
+          <ul>
+            <li>
+              Рассказываем какие мы крутые и почему именно мы
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <div class="social_container">
+            <h5>
+              Контакты
+            </h5>
+             <ul>
+            <li>
+             Если у вас остались вопросы, свяжитесь с нами любым удобным для Вас способом, или заполните форму обратной связи и с Вами свяжутся в течении 15 минут!
+            </li>
+            <li>
+             АДРЕС: Г ПЕНЗА, УЛ МАРАТА, Д 28
+            </li>
+            <li>
+             ТЕЛ. +79277075059
+            </li>
+            <li>
+             EMAIL: Fitolive@rambler.ru
+            </li>
+          </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+
+</html>

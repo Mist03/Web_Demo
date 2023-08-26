@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+	<title>Shopping Cart</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/cart.css'%}">
+	  <!-- fonts style -->
+  	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
+  	<!-- Custom styles for this template -->
+  	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  	<!-- responsive style -->
+  	<link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+</head>
+<body>
+	<div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" alt="" /><span>
+              Название сайта
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+				<li class="nav-item active">
+                  <a class="nav-link" href="{% url 'home' %}">Главная страница <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="service"> Услуги</a>
+                </li>
+                {% if user.is_authenticated  %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile' %}"> {{user.username}}</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile' %}"> Вход</a>
+                </li>
+                {% endif %}
+              </ul>
+              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+	<main class="page">
+	 	<section class="shopping-cart dark">
+	 		<div class="container">
+		        <div class="block-heading">
+		          <h2>Корзина покупок</h2>
+		        </div>
+		        <div class="content">
+	 				<div class="row">
+	 					<div class="col-md-12 col-lg-9">
+	 						<div class="items">
+								{% for item in items_data %}
+				 				<div class="product">
+				 					<div class="row">
+					 					<div class="col-md-3">
+					 						<img class="img-fluid rounded mx-auto d-block image" src="{{item.images.url}}">
+					 					</div>
+					 					<div class="col-md-9">
+					 						<div class="info">
+						 						<div class="row">
+							 						<div class="col-md-4 product-name">
+							 							<div class="product-name">
+								 							<a>{{ item.product }}</a>
+									 					</div>
+							 						</div>
+							 						<div class="col-md-3 quantity">
+							 							<div class="product-name">
+								 							<a>{{ item.quantity }}</a>
+									 					</div>
+							 						</div>
+							 						<div class="col-md-4 quantity">
+														<div class="product-name">
+							 								<a>{{ item.product.price }} руб</a>
+														</div>
+							 						</div>
+													<div class="col-md-1 quantity">
+														<form action="{% url 'cart' %}" method="post">
+															{% csrf_token %}
+															<input type="hidden" name="product_id" value="{{ item.product_id }}">
+															<button type="submit"><img src="{% static 'images/del.png' %}" alt="Image" width="20" height="20"></button>
+														</form>
+
+							 						</div>
+
+							 					</div>
+							 				</div>
+					 					</div>
+					 				</div>
+				 				</div>
+								{% endfor %}
+				 			</div>
+			 			</div>
+			 			<div class="col-md-12 col-lg-3">
+			 				<div class="summary" >
+			 					<h3>Итог</h3>
+			 					<div class="summary-item"><span class="text">Всего</span><span class="price">{{ total_price }}</span></div>
+			 					<div style="text-align: center"><button type="button" class="text-uppercase custom_orange-btn btn ">Оплата</button></div>
+								<br>
+								<div style="text-align: center">
+									<a href="service" class="custom_orange-btn" style="border-radius: 5px; display: inline-block; text-decoration: none;">
+										Продолжить покупки
+									</a>
+								</div>
+				 			</div>
+			 			</div>
+		 			</div>
+		 		</div>
+	 		</div>
+
+		</section>
+	</main>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	</body>
+</html>

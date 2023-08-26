@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Service</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css'%}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css'%}" rel="stylesheet" />
+  <style>
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px;
+    height: 300px;
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="hero_area sub_pages">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+          <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png'%}" alt="" /><span>
+              Название сайта
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'home' %}">Главная страница <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'cart' %}"> Корзина</a>
+                </li>
+              {% if user.is_authenticated  %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile' %}"> {{user.username}}</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile' %}"> Вход</a>
+                </li>
+                {% endif %}
+              </ul>
+              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+  </div>
+
+  <!-- block section -->
+  <section class="service_section layout_padding ">
+    <div class="container">
+      <h2 class="custom_heading">Наши услуги</h2>
+      <p class="custom_heading-text">
+        Что-то пишем
+      </p>
+      <div class=" layout_padding2">
+        <div class="card-deck">
+          {% for post in post_list %}
+          <div class="card">
+
+            <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap"/>
+            <div class="card-body">
+              <h5 class="card-title">{{post.title}}</h5>
+              <p class="card-text">{{post.text}}</p>
+              <p class="card-text">{{post.price}} руб</p>
+              {% if user.is_authenticated  %}
+              <form method="post" action="{% url 'add_to_cart' post.id %}">
+                {% csrf_token %}
+                <input style="font-size: 15px;" class="text-uppercase custom_orange-btn mr-3" type="submit" value="Добавить">
+              </form>
+              {% else %}
+              <a href="{% url 'profile' %}" style="font-size: 15px;" class="text-uppercase custom_orange-btn mr-3">Авторизоваться</a>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end block section -->
+  <section class="info_section layout_padding">
+    <div class="container">
+      <div class="roww">
+        <div class="col-md-3">
+          <h5>
+            О нас
+          </h5>
+          <ul>
+            <li>
+              Рассказываем какие мы крутые и почему именно мы
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <div class="social_container">
+            <h5>
+              Контакты
+            </h5>
+             <ul>
+            <li>
+             Если у вас остались вопросы, свяжитесь с нами любым удобным для Вас способом, или заполните форму обратной связи и с Вами свяжутся в течении 15 минут!
+            </li>
+            <li>
+             АДРЕС: Г ПЕНЗА, УЛ МАРАТА, Д 28
+            </li>
+            <li>
+             ТЕЛ. +79277075059
+            </li>
+            <li>
+             EMAIL: Fitolive@rambler.ru
+            </li>
+          </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+</html>
